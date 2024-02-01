@@ -1,0 +1,26 @@
+{
+      "orderItems" : [
+            {
+                  "_id": "65b63264a723fecf6adcbf5e",
+                  "quantity": 2,
+                  "image": "/uploads/image-1706439206797.png",
+                  "qty": 2,
+                  "name": "Adjustable Dumbells"
+            },
+            {
+                "_id": "65b63431a723fecf6adcbf68",
+                  "quantity": 4,
+                  "image": "/uploads/image-1706439681304.png",
+                  "qty": 2,
+                  "name": "MacBook Air 15 Apple M2"
+            }
+      ],
+      "shippingAddress": {
+            "address": "Liinivahe 1-7",
+            "city": "Tallinn",
+            "postalCode": "11712",
+            "country": "Estonia"
+      },
+      "paymentMethod": "PayPal",
+      "itemsPrice": 1000
+}
