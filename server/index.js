@@ -15,6 +15,7 @@ const port = 4000
 connectDB()
 const app = express()
 
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
@@ -30,11 +31,6 @@ app.get("/api/config/paypal", (req, res) => {
 })
 
 const __dirname = path.resolve();
-app.use("/uploads", express.static(path.join(__dirname + "/uploads")));
-app.use(express.static(path.join(__dirname, "/client/dist")));
-
-app.get("*", (res) => {
-      res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-});
+app.use("/client/uploads", express.static(path.join(__dirname + "/clients/uploads")));
 
 app.listen(port, () => console.log("Server running"))
