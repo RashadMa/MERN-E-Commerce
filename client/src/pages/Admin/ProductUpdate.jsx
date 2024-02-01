@@ -83,7 +83,7 @@ const AdminProductUpdate = () => {
                   } else {
                         Swal.fire({
                               position: "top-end",
-                              icon: "error",
+                              icon: "success",
                               title: "Product successfully updated.",
                               showConfirmButton: false,
                               timer: 1500

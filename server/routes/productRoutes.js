@@ -7,7 +7,7 @@ import { createProduct, updateProduct, deleteProduct, readProducts, readProductB
 const router = express.Router()
 
 router.route("/allproducts").get(readAllProducts)
-router.route("/:id/reviews").post(auth, authAdmin, checkId, createProductReview)
+router.route("/:id/reviews").post(auth, checkId, createProductReview)
 router.route("/").get(readProducts).post(auth, authAdmin, formidable(), createProduct)
 router.get("/top", readTopProducts)
 router.get("/new", readNewProducts)

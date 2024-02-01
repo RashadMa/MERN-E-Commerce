@@ -6,7 +6,7 @@ import AdminMenu from "./AdminMenu";
 import Swal from "sweetalert2";
 
 const CategoryList = () => {
-      const { data: categories } = useFetchCategoriesQuery();
+      const { data: categories, refetch } = useFetchCategoriesQuery();
       const [name, setName] = useState("");
       const [selectedCategory, setSelectedCategory] = useState(null);
       const [updatingName, setUpdatingName] = useState("");
@@ -27,7 +27,6 @@ const CategoryList = () => {
                   });
                   return;
             }
-
             try {
                   const result = await createCategory({ name }).unwrap();
                   if (result.error) {
@@ -47,6 +46,7 @@ const CategoryList = () => {
                               showConfirmButton: false,
                               timer: 1000
                         });
+                        refetch()
                   }
             } catch (error) {
                   console.error(error);
@@ -98,6 +98,7 @@ const CategoryList = () => {
                         setSelectedCategory(null);
                         setUpdatingName("");
                         setModalVisible(false);
+                        refetch()
                   }
             } catch (error) {
                   console.error(error);
@@ -125,7 +126,9 @@ const CategoryList = () => {
                         })
                         setSelectedCategory(null);
                         setModalVisible(false);
+                        refetch()
                   }
+
             } catch (error) {
                   console.error(error);
                   Swal.fire({
@@ -142,7 +145,7 @@ const CategoryList = () => {
             <div className="flex flex-col md:flex-row justify-center">
                   <AdminMenu />
                   <div className="md:w-3/4 p-3">
-                        <div className="h-12">Manage Categories</div>
+                        <div className="h-12 font-extrabold">Manage Categories</div>
                         <CategoryForm
                               value={name}
                               setValue={setName}
@@ -153,7 +156,7 @@ const CategoryList = () => {
                               {categories?.map((category) => (
                                     <div key={category._id}>
                                           <button
-                                                className="bg-gray-600 border border-black text-gray-100 py-2 px-4 rounded-lg m-3 hover:bg-black hover:text-white focus:outline-none foucs:ring-2 focus:ring-black focus:ring-opacity-50"
+                                                className="bg-gray-600 border border-black text-gray-100 py-2 px-4 rounded-lg m-3 hover:bg-black hover:text-white focus:outline-none foucs:ring-2 focus:ring-black focus:ring-opacity-50 capitalize"
                                                 onClick={() => {
                                                       {
                                                             setModalVisible(true);

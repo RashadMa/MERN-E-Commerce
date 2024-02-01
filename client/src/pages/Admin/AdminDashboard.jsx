@@ -71,7 +71,7 @@ const AdminDashboard = () => {
                                     <div className="rounded-lg  p-5 w-[20rem] mt-5 bg-gray-600">
                                           <div className="font-bold rounded-full w-[3rem] bg-gray-100 text-center p-3">$</div>
                                           <p className="mt-5 text-white">Customers</p>
-                                          <h1 className="text-xl font-bold text-white">$ {isLoading ? <Loader /> : customers?.length}</h1>
+                                          <h1 className="text-xl font-bold text-white">{isLoading ? <Loader /> : customers?.length}</h1>
                                     </div>
                                     <div className="rounded-lg  p-5 w-[20rem] mt-5 bg-gray-600">
                                           <div className="font-bold rounded-full w-[3rem] bg-gray-100 text-center p-3e">$</div>

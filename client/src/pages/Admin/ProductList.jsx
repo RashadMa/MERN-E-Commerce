@@ -47,6 +47,15 @@ const ProductList = () => {
                               showConfirmButton: false,
                               timer: 1500
                         });
+                        setName("")
+                        setPrice("")
+                        setQuantity("")
+                        setBrand("")
+                        setCategory("")
+                        setDescription("")
+                        setImage("")
+                        setStock("")
+                        setImageUrl(null)
                   }
             } catch (error) {
                   console.error(error);
