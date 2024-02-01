@@ -31,6 +31,6 @@ app.get("/api/config/paypal", (req, res) => {
 })
 
 const __dirname = path.resolve();
-app.use("/client/uploads", express.static(path.join(__dirname + "/clients/uploads")));
+app.use("/uploads", express.static(path.join(__dirname + "/uploads")));
 
 app.listen(port, () => console.log("Server running"))
