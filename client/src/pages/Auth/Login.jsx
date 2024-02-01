@@ -5,7 +5,6 @@ import Loader from "../../components/Loader";
 import { useLoginMutation } from "../../redux/api/usersApiSlice";
 import { setCredentials } from "../../redux/features/auth/authSlice";
 import "./Navigation.scss";
-import Swal from "sweetalert2";
 
 
 const Login = () => {
@@ -32,13 +31,7 @@ const Login = () => {
                   dispatch(setCredentials({ ...res }));
                   navigate(redirect);
             } catch (err) {
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: err?.data?.message || err.error,
-                        showConfirmButton: false,
-                        timer: 1000
-                  });
+                  console.log(err);
             }
       };
 
