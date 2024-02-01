@@ -5,7 +5,7 @@ import Loader from "../../components/Loader";
 import { useRegisterMutation } from "../../redux/api/usersApiSlice";
 import { setCredentials } from "../../redux/features/auth/authSlice";
 import "./Navigation.scss";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const Register = () => {
       const [username, setName] = useState("");
@@ -30,34 +30,34 @@ const Register = () => {
             e.preventDefault();
 
             if (password !== confirmPassword) {
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: "Password do not match",
-                        showConfirmButton: false,
-                        timer: 1000
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "error",
+                  //       title: "Password do not match",
+                  //       showConfirmButton: false,
+                  //       timer: 1000
+                  // });
             } else {
                   try {
                         const res = await register({ username, email, password }).unwrap();
                         dispatch(setCredentials({ ...res }));
                         navigate(redirect);
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "success",
-                              title: "User successfully registered",
-                              showConfirmButton: false,
-                              timer: 1000
-                        });
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "success",
+                        //       title: "User successfully registered",
+                        //       showConfirmButton: false,
+                        //       timer: 1000
+                        // });
                   } catch (err) {
                         console.log(err);
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "error",
-                              title: err.data.message,
-                              showConfirmButton: false,
-                              timer: 1000
-                        });
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "error",
+                        //       title: err.data.message,
+                        //       showConfirmButton: false,
+                        //       timer: 1000
+                        // });
                   }
             }
       };

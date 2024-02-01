@@ -3,7 +3,7 @@ import { useCreateCategoryMutation, useUpdateCategoryMutation, useDeleteCategory
 import CategoryForm from "../../components/CategoryForm";
 import Modal from "../../components/Modal";
 import AdminMenu from "./AdminMenu";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const CategoryList = () => {
       const { data: categories, refetch } = useFetchCategoriesQuery();
@@ -18,58 +18,58 @@ const CategoryList = () => {
       const handleCreateCategory = async (e) => {
             e.preventDefault();
             if (!name) {
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: "Category name is required",
-                        showConfirmButton: false,
-                        timer: 1000
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "error",
+                  //       title: "Category name is required",
+                  //       showConfirmButton: false,
+                  //       timer: 1000
+                  // });
                   return;
             }
             try {
                   const result = await createCategory({ name }).unwrap();
                   if (result.error) {
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "error",
-                              title: result.error,
-                              showConfirmButton: false,
-                              timer: 1000
-                        });
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "error",
+                        //       title: result.error,
+                        //       showConfirmButton: false,
+                        //       timer: 1000
+                        // });
                   } else {
                         setName("");
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "success",
-                              title: `${result.name} is created.`,
-                              showConfirmButton: false,
-                              timer: 1000
-                        });
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "success",
+                        //       title: `${result.name} is created.`,
+                        //       showConfirmButton: false,
+                        //       timer: 1000
+                        // });
                         refetch()
                   }
             } catch (error) {
                   console.error(error);
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: "Creating category failed, try again.",
-                        showConfirmButton: false,
-                        timer: 1000
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "error",
+                  //       title: "Creating category failed, try again.",
+                  //       showConfirmButton: false,
+                  //       timer: 1000
+                  // });
             }
       };
 
       const handleUpdateCategory = async (e) => {
             e.preventDefault();
             if (!updatingName) {
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: "Category name is required.",
-                        showConfirmButton: false,
-                        timer: 1000
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "error",
+                  //       title: "Category name is required.",
+                  //       showConfirmButton: false,
+                  //       timer: 1000
+                  // });
                   return;
             }
             try {
@@ -80,21 +80,21 @@ const CategoryList = () => {
                         },
                   }).unwrap();
                   if (result.error) {
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "error",
-                              title: result.error,
-                              showConfirmButton: false,
-                              timer: 1000
-                        })
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "error",
+                        //       title: result.error,
+                        //       showConfirmButton: false,
+                        //       timer: 1000
+                        // })
                   } else {
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "success",
-                              title: `${result.name} is updated.`,
-                              showConfirmButton: false,
-                              timer: 1000
-                        })
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "success",
+                        //       title: `${result.name} is updated.`,
+                        //       showConfirmButton: false,
+                        //       timer: 1000
+                        // })
                         setSelectedCategory(null);
                         setUpdatingName("");
                         setModalVisible(false);
@@ -109,21 +109,21 @@ const CategoryList = () => {
             try {
                   const result = await deleteCategory(selectedCategory._id).unwrap();
                   if (result.error) {
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "error",
-                              title: result.error,
-                              showConfirmButton: false,
-                              timer: 1000
-                        })
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "error",
+                        //       title: result.error,
+                        //       showConfirmButton: false,
+                        //       timer: 1000
+                        // })
                   } else {
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "success",
-                              title: `${result.name} is deleted.`,
-                              showConfirmButton: false,
-                              timer: 1000
-                        })
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "success",
+                        //       title: `${result.name} is deleted.`,
+                        //       showConfirmButton: false,
+                        //       timer: 1000
+                        // })
                         setSelectedCategory(null);
                         setModalVisible(false);
                         refetch()
@@ -131,13 +131,13 @@ const CategoryList = () => {
 
             } catch (error) {
                   console.error(error);
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: "Category delection failed.Try again.",
-                        showConfirmButton: false,
-                        timer: 1000
-                  })
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "error",
+                  //       title: "Category delection failed.Try again.",
+                  //       showConfirmButton: false,
+                  //       timer: 1000
+                  // })
             }
       };
 

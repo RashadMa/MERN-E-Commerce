@@ -5,7 +5,7 @@ import { setCredentials } from "../../redux/features/auth/authSlice"
 import { Link } from "react-router-dom"
 import { useProfileMutation } from "../../redux/api/usersApiSlice"
 import AdminMenu from "../Admin/AdminMenu"
-import Swal from "sweetalert2"
+// import Swal from "sweetalert2"
 
 const Profile = () => {
       const [username, setUsername] = useState("")
@@ -18,22 +18,22 @@ const Profile = () => {
       const submitHandler = async (e) => {
             e.preventDefault();
             if (!email || !username) {
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: "Username or E-mail is required",
-                        showConfirmButton: false,
-                        timer: 1000
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "error",
+                  //       title: "Username or E-mail is required",
+                  //       showConfirmButton: false,
+                  //       timer: 1000
+                  // });
             } else {
                   if (password !== confirmPassword) {
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "error",
-                              title: "Password do not match",
-                              showConfirmButton: false,
-                              timer: 1000
-                        });
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "error",
+                        //       title: "Password do not match",
+                        //       showConfirmButton: false,
+                        //       timer: 1000
+                        // });
                   } else {
                         try {
                               const res = await updateProfile({
@@ -43,21 +43,21 @@ const Profile = () => {
                                     password,
                               }).unwrap();
                               dispatch(setCredentials({ ...res }));
-                              Swal.fire({
-                                    position: "top-end",
-                                    icon: "success",
-                                    title: "Profile updated successfully",
-                                    showConfirmButton: false,
-                                    timer: 1000
-                              });
+                              // Swal.fire({
+                              //       position: "top-end",
+                              //       icon: "success",
+                              //       title: "Profile updated successfully",
+                              //       showConfirmButton: false,
+                              //       timer: 1000
+                              // });
                         } catch (err) {
-                              Swal.fire({
-                                    position: "top-end",
-                                    icon: "error",
-                                    title: err?.data?.message || err.error,
-                                    showConfirmButton: false,
-                                    timer: 1000
-                              });
+                              // Swal.fire({
+                              //       position: "top-end",
+                              //       icon: "error",
+                              //       title: err?.data?.message || err.error,
+                              //       showConfirmButton: false,
+                              //       timer: 1000
+                              // });
                         }
                   }
             }

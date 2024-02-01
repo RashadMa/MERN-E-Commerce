@@ -3,7 +3,7 @@ import AdminMenu from "./AdminMenu";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUpdateProductMutation, useDeleteProductMutation, useGetProductByIdQuery, useUploadProductImageMutation } from "../../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const AdminProductUpdate = () => {
       const params = useParams();
@@ -16,7 +16,7 @@ const AdminProductUpdate = () => {
       const [quantity, setQuantity] = useState(productData?.quantity || "");
       const [brand, setBrand] = useState(productData?.brand || "");
       const [stock, setStock] = useState(productData?.countInStock);
-      const navigate = useNavigate();
+      // const navigate = useNavigate();
       const { data: categories = [] } = useFetchCategoriesQuery();
       const [uploadProductImage] = useUploadProductImageMutation();
       const [updateProduct] = useUpdateProductMutation();
@@ -39,22 +39,22 @@ const AdminProductUpdate = () => {
             formData.append("image", e.target.files[0]);
             try {
                   const res = await uploadProductImage(formData).unwrap();
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Item added successfully.",
-                        showConfirmButton: false,
-                        timer: 1500
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "success",
+                  //       title: "Item added successfully.",
+                  //       showConfirmButton: false,
+                  //       timer: 1500
+                  // });
                   setImage(res.image);
             } catch (err) {
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: "Item added failed. Try again.",
-                        showConfirmButton: false,
-                        timer: 1500
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "error",
+                  //       title: "Item added failed. Try again.",
+                  //       showConfirmButton: false,
+                  //       timer: 1500
+                  // });
             }
       };
 
@@ -73,69 +73,38 @@ const AdminProductUpdate = () => {
                   const data = await updateProduct({ productId: params._id, formData });
 
                   if (data?.error) {
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "error",
-                              title: data.error,
-                              showConfirmButton: false,
-                              timer: 1500
-                        });
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "error",
+                        //       title: data.error,
+                        //       showConfirmButton: false,
+                        //       timer: 1500
+                        // });
                   } else {
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "success",
-                              title: "Product successfully updated.",
-                              showConfirmButton: false,
-                              timer: 1500
-                        });
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "success",
+                        //       title: "Product successfully updated.",
+                        //       showConfirmButton: false,
+                        //       timer: 1500
+                        // });
                   }
             } catch (err) {
-                  console.log(err);
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: "Product update failed. Try again.",
-                        showConfirmButton: false,
-                        timer: 1500
-                  });
+                  // console.log(err);
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "error",
+                  //       title: "Product update failed. Try again.",
+                  //       showConfirmButton: false,
+                  //       timer: 1500
+                  // });
             }
       };
 
       const handleDelete = async () => {
-            const swalWithBootstrapButtons = Swal.mixin({
-                  customClass: {
-                        confirmButton: "btn btn-success",
-                        cancelButton: "btn btn-danger"
-                  },
-                  buttonsStyling: false
-            });
-            swalWithBootstrapButtons.fire({
-                  title: "Are you sure?",
-                  text: "You won't be able to revert this!",
-                  icon: "warning",
-                  showCancelButton: true,
-                  confirmButtonText: "Yes, delete it!",
-                  cancelButtonText: "No, cancel!",
-                  reverseButtons: true
-            }).then(async (result) => {
-                  if (result.isConfirmed) {
-                        const { data } = await deleteProduct(params._id);
-                        swalWithBootstrapButtons.fire({
-                              title: "Deleted!",
-                              text: `${data.name} is deleted`,
-                              icon: "success"
-                        });
-                        navigate('/admin/allproductslist')
-                  } else if (
-                        result.dismiss === Swal.DismissReason.cancel
-                  ) {
-                        swalWithBootstrapButtons.fire({
-                              title: "Cancelled",
-                              text: "File is safe",
-                              icon: "error"
-                        });
-                  }
-            });
+
+            const { data } = await deleteProduct(params._id);
+            console.log(data);
       };
 
       return (

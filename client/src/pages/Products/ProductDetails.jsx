@@ -9,7 +9,7 @@ import HeartIcon from "./HeartIcon";
 import Ratings from "./Ratings";
 import ProductTabs from "./ProductTabs";
 import { addToCart } from "../../redux/features/cart/cartSlice";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const ProductDetails = () => {
       const { id: productId } = useParams();
@@ -30,34 +30,34 @@ const ProductDetails = () => {
                         comment,
                   }).unwrap();
                   refetch();
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Review created successfully",
-                        showConfirmButton: false,
-                        timer: 1000
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "success",
+                  //       title: "Review created successfully",
+                  //       showConfirmButton: false,
+                  //       timer: 1000
+                  // });
                   setComment("")
             } catch (error) {
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: error?.data || error.message,
-                        showConfirmButton: false,
-                        timer: 1000
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "error",
+                  //       title: error?.data || error.message,
+                  //       showConfirmButton: false,
+                  //       timer: 1000
+                  // });
             }
       };
 
       const addToCartHandler = () => {
             dispatch(addToCart({ ...product, qty }));
-            Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "Item added to cart",
-                  showConfirmButton: false,
-                  timer: 1000
-            });
+            // Swal.fire({
+            //       position: "top-end",
+            //       icon: "success",
+            //       title: "Item added to cart",
+            //       showConfirmButton: false,
+            //       timer: 1000
+            // });
       };
 
       return (

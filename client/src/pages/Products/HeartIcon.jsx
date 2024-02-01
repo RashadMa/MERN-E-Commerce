@@ -3,7 +3,7 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { addToFavorites, removeFromFavorites, setFavorites, } from "../../redux/features/favorites/favoriteSlice";
 import { addFavoriteToLocalStorage, getFavoritesFromLocalStorage, removeFavoriteFromLocalStorage, } from "../../Utils/localStorage";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const HeartIcon = ({ product }) => {
       const dispatch = useDispatch();
@@ -19,23 +19,23 @@ const HeartIcon = ({ product }) => {
             if (isFavorite) {
                   dispatch(removeFromFavorites(product));
                   removeFavoriteFromLocalStorage(product._id);
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Item removed from favorites",
-                        showConfirmButton: false,
-                        timer: 1000
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "success",
+                  //       title: "Item removed from favorites",
+                  //       showConfirmButton: false,
+                  //       timer: 1000
+                  // });
             } else {
                   dispatch(addToFavorites(product));
                   addFavoriteToLocalStorage(product);
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Item added to favorites",
-                        showConfirmButton: false,
-                        timer: 1000
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "success",
+                  //       title: "Item added to favorites",
+                  //       showConfirmButton: false,
+                  //       timer: 1000
+                  // });
             }
       };
 

@@ -6,7 +6,7 @@ import Messsage from "../../components/Message";
 import Loader from "../../components/Loader";
 import { useDeliverOrderMutation, useGetOrderDetailsQuery, useGetPaypalClientIdQuery, usePayOrderMutation, } from "../../redux/api/orderApiSlice";
 import moment from "moment";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const Order = () => {
       const { id: orderId } = useParams();
@@ -42,21 +42,21 @@ const Order = () => {
                   try {
                         await payOrder({ orderId, details });
                         refetch();
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "success",
-                              title: "Order is paid",
-                              showConfirmButton: false,
-                              timer: 1000
-                        });
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "success",
+                        //       title: "Order is paid",
+                        //       showConfirmButton: false,
+                        //       timer: 1000
+                        // });
                   } catch (error) {
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "error",
-                              title: error?.data?.message || error.message,
-                              showConfirmButton: false,
-                              timer: 1000
-                        });
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "error",
+                        //       title: error?.data?.message || error.message,
+                        //       showConfirmButton: false,
+                        //       timer: 1000
+                        // });
                   }
             });
       }
@@ -72,13 +72,13 @@ const Order = () => {
       }
 
       function onError(err) {
-            Swal.fire({
-                  position: "top-end",
-                  icon: "error",
-                  title: err.message,
-                  showConfirmButton: false,
-                  timer: 1000
-            });
+            // Swal.fire({
+            //       position: "top-end",
+            //       icon: "error",
+            //       title: err.message,
+            //       showConfirmButton: false,
+            //       timer: 1000
+            // });
       }
 
       const deliverHandler = async () => {

@@ -6,7 +6,7 @@ import ProgressSteps from "../../components/ProgressSteps";
 import Loader from "../../components/Loader";
 import { useCreateOrderMutation } from "../../redux/api/orderApiSlice";
 import { clearCartItems } from "../../redux/features/cart/cartSlice";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const PlaceOrder = () => {
       const navigate = useNavigate();
@@ -32,13 +32,13 @@ const PlaceOrder = () => {
                   dispatch(clearCartItems());
                   navigate(`/order/${res._id}`);
             } catch (error) {
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: error,
-                        showConfirmButton: false,
-                        timer: 1000
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "error",
+                  //       title: error,
+                  //       showConfirmButton: false,
+                  //       timer: 1000
+                  // });
             }
       };
 

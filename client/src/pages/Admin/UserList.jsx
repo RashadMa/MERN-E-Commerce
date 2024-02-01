@@ -4,7 +4,7 @@ import Loader from "../../components/Loader"
 import { useGetUsersQuery, useDeleteUserMutation, useUpdateUserMutation } from "../../redux/api/usersApiSlice"
 import Message from "../../components/Message"
 import AdminMenu from "./AdminMenu";
-import Swal from "sweetalert2"
+// import Swal from "sweetalert2"
 
 const UserList = () => {
       const { data: users, refetch, isLoading, error } = useGetUsersQuery()
@@ -24,13 +24,13 @@ const UserList = () => {
                         await deleteUser(id);
                         refetch();
                   } catch (err) {
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "error",
-                              title: err?.data?.message || err.error,
-                              showConfirmButton: false,
-                              timer: 1000
-                        });
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "error",
+                        //       title: err?.data?.message || err.error,
+                        //       showConfirmButton: false,
+                        //       timer: 1000
+                        // });
                   }
             }
       };
@@ -51,13 +51,13 @@ const UserList = () => {
                   setEditableUserId(null);
                   refetch();
             } catch (err) {
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: err?.data?.message || err.error,
-                        showConfirmButton: false,
-                        timer: 1000
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "error",
+                  //       title: err?.data?.message || err.error,
+                  //       showConfirmButton: false,
+                  //       timer: 1000
+                  // });
             }
       };
 

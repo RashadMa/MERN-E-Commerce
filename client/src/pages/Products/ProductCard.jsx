@@ -3,19 +3,19 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import HeartIcon from "./HeartIcon";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const ProductCard = ({ p }) => {
       const dispatch = useDispatch();
       const addToCartHandler = (product, qty) => {
             dispatch(addToCart({ ...product, qty }));
-            Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "Item added successfully",
-                  showConfirmButton: false,
-                  timer: 1000
-            });
+            // Swal.fire({
+            //       position: "top-end",
+            //       icon: "success",
+            //       title: "Item added successfully",
+            //       showConfirmButton: false,
+            //       timer: 1000
+            // });
       };
 
       return (

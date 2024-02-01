@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useCreateProductMutation, useUploadProductImageMutation } from "../../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
 import AdminMenu from "./AdminMenu";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const ProductList = () => {
       const [image, setImage] = useState("");
@@ -32,21 +32,21 @@ const ProductList = () => {
                   productData.append("countInStock", stock);
                   const { data } = await createProduct(productData);
                   if (data.error) {
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "error",
-                              title: "Product create failed. Try Again.",
-                              showConfirmButton: false,
-                              timer: 1500
-                        });
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "error",
+                        //       title: "Product create failed. Try Again.",
+                        //       showConfirmButton: false,
+                        //       timer: 1500
+                        // });
                   } else {
-                        Swal.fire({
-                              position: "top-end",
-                              icon: "success",
-                              title: `${data.name} is created.`,
-                              showConfirmButton: false,
-                              timer: 1500
-                        });
+                        // Swal.fire({
+                        //       position: "top-end",
+                        //       icon: "success",
+                        //       title: `${data.name} is created.`,
+                        //       showConfirmButton: false,
+                        //       timer: 1500
+                        // });
                         setName("")
                         setPrice("")
                         setQuantity("")
@@ -59,13 +59,13 @@ const ProductList = () => {
                   }
             } catch (error) {
                   console.error(error);
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: "Product create failed. Try Again.",
-                        showConfirmButton: false,
-                        timer: 1500
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "error",
+                  //       title: "Product create failed. Try Again.",
+                  //       showConfirmButton: false,
+                  //       timer: 1500
+                  // });
             }
       };
 
@@ -75,23 +75,23 @@ const ProductList = () => {
 
             try {
                   const res = await uploadProductImage(formData).unwrap();
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: res.message,
-                        showConfirmButton: false,
-                        timer: 1500
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "success",
+                  //       title: res.message,
+                  //       showConfirmButton: false,
+                  //       timer: 1500
+                  // });
                   setImage(res.image);
                   setImageUrl(res.image);
             } catch (error) {
-                  Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: error?.data?.message || error.error,
-                        showConfirmButton: false,
-                        timer: 1500
-                  });
+                  // Swal.fire({
+                  //       position: "top-end",
+                  //       icon: "error",
+                  //       title: error?.data?.message || error.error,
+                  //       showConfirmButton: false,
+                  //       timer: 1500
+                  // });
             }
       };
 

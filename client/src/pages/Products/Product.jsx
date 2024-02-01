@@ -4,20 +4,20 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { FaShoppingCart } from "react-icons/fa";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const Product = ({ product }) => {
       const [qty] = useState(1);
       const dispatch = useDispatch();
       const addToCartHandler = () => {
             dispatch(addToCart({ ...product, qty }))
-            Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "Item added to cart",
-                  showConfirmButton: false,
-                  timer: 1000
-            });
+            // Swal.fire({
+            //       position: "top-end",
+            //       icon: "success",
+            //       title: "Item added to cart",
+            //       showConfirmButton: false,
+            //       timer: 1000
+            // });
       };
       return (
             <div className="w-[20rem] p-3 relative">
