@@ -141,40 +141,36 @@ const AdminProductUpdate = () => {
       return (
             <>
                   <div className="container mx-auto mt-5 p-5">
-                        <div className="flex flex-col md:flex-row">
-                              <AdminMenu />
-                              <div className=" mx-auto p-3 bg-gray-100 rounded-md">
+                        <AdminMenu />
+                        <div className="p-3 flex">
+                              <div className="mx-auto p-3 bg-gray-100 rounded-md">
                                     <div className="h-12 mb-4 text-2xl font-bold">Update / Delete Product</div>
                                     {image && (
                                           <div className="text-center">
-                                                <img
-                                                      src={image}
-                                                      alt="product"
-                                                      className="block mx-auto w-[10rem] h-full" />
+                                                <img src={image} alt="product" className="block mx-auto w-[10rem] h-full" />
                                           </div>
                                     )}
                                     <div className="mb-3">
-                                          <label className="text-white py-2 px-4 block  text-center rounded-lg cursor-pointer font-bold">
+                                          <label className="py-2 px-4 block  text-center rounded-lg cursor-pointer font-bold">
                                                 {image ? image.name : "Upload image"}
                                                 <input
                                                       type="file"
                                                       name="image"
                                                       accept="image/*"
                                                       onChange={uploadFileHandler}
-                                                      className="text-white w-[40%]" />
+                                                      className="w-[40%]" />
                                           </label>
                                     </div>
-                                    <div className="p-3">
+                                    <div className="grid grid-cols-1 gap-4">
                                           <div className="mb-4">
                                                 <label htmlFor="name" className="text-lg font-semibold">
-                                                      Product Name
+                                                      Name
                                                 </label>
                                                 <input
                                                       type="text"
                                                       className="p-2 w-full border rounded-md bg-gray-200"
                                                       value={name}
-                                                      onChange={(e) => setName(e.target.value)}
-                                                />
+                                                      onChange={(e) => setName(e.target.value)} />
                                           </div>
                                           <div className="mb-4">
                                                 <label htmlFor="price" className="text-lg font-semibold">

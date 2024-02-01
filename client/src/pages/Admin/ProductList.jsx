@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useCreateProductMutation, useUploadProductImageMutation } from "../../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
-import { toast } from "react-toastify";
 import AdminMenu from "./AdminMenu";
+import Swal from "sweetalert2";
 
 const ProductList = () => {
       const [image, setImage] = useState("");
@@ -15,7 +14,6 @@ const ProductList = () => {
       const [brand, setBrand] = useState("");
       const [stock, setStock] = useState(0);
       const [imageUrl, setImageUrl] = useState(null);
-      const navigate = useNavigate();
       const [uploadProductImage] = useUploadProductImageMutation();
       const [createProduct] = useCreateProductMutation();
       const { data: categories } = useFetchCategoriesQuery();
@@ -32,18 +30,33 @@ const ProductList = () => {
                   productData.append("quantity", quantity);
                   productData.append("brand", brand);
                   productData.append("countInStock", stock);
-
                   const { data } = await createProduct(productData);
-
                   if (data.error) {
-                        toast.error("Product create failed. Try Again.");
+                        Swal.fire({
+                              position: "top-end",
+                              icon: "error",
+                              title: "Product create failed. Try Again.",
+                              showConfirmButton: false,
+                              timer: 1500
+                        });
                   } else {
-                        toast.success(`${data.name} is created`);
-                        navigate("/admin/allproductslist");
+                        Swal.fire({
+                              position: "top-end",
+                              icon: "success",
+                              title: `${data.name} is created.`,
+                              showConfirmButton: false,
+                              timer: 1500
+                        });
                   }
             } catch (error) {
                   console.error(error);
-                  toast.error("Product create failed. Try Again.");
+                  Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "Product create failed. Try Again.",
+                        showConfirmButton: false,
+                        timer: 1500
+                  });
             }
       };
 
@@ -53,101 +66,121 @@ const ProductList = () => {
 
             try {
                   const res = await uploadProductImage(formData).unwrap();
-                  toast.success(res.message);
+                  Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: res.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                  });
                   setImage(res.image);
                   setImageUrl(res.image);
             } catch (error) {
-                  toast.error(error?.data?.message || error.error);
+                  Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: error?.data?.message || error.error,
+                        showConfirmButton: false,
+                        timer: 1500
+                  });
             }
       };
 
       return (
-            <div className="container xl:mx-[9rem] sm:mx-[0]">
-                  <div className="flex flex-col md:flex-row">
-                        <AdminMenu />
-                        <div className="md:w-3/4 p-3">
-                              <div className="h-12">Create Product</div>
+            <div className="container mx-auto mt-5 p-5">
+                  <AdminMenu />
+                  <div className="p-3 flex">
+                        <div className="mx-auto p-3 bg-gray-100 rounded-md">
+                              <div className="h-12 mb-4 text-2xl font-bold">Create Product</div>
                               {imageUrl && (
                                     <div className="text-center">
-                                          <img
-                                                src={imageUrl}
-                                                alt="product"
-                                                className="block mx-auto max-h-[200px]" />
+                                          <img src={imageUrl} alt="product" className="block mx-auto w-[10rem] h-full" />
                                     </div>
                               )}
                               <div className="mb-3">
-                                    <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
+                                    <label className="py-2 px-4 block  text-center rounded-lg cursor-pointer font-bold">
                                           {image ? image.name : "Upload Image"}
-
                                           <input
                                                 type="file"
                                                 name="image"
                                                 accept="image/*"
                                                 onChange={uploadFileHandler}
-                                                className={!image ? "hidden" : "text-white"} />
+                                                className={!image ? "hidden" : ""}
+                                          />
                                     </label>
                               </div>
-                              <div className="p-3">
-                                    <div className="flex flex-wrap">
-                                          <div className="one">
-                                                <label htmlFor="name">Name</label> <br />
-                                                <input
-                                                      type="text"
-                                                      className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
-                                                      value={name}
-                                                      onChange={(e) => setName(e.target.value)} />
-                                          </div>
-                                          <div className="two ml-10 ">
-                                                <label htmlFor="name block">Price</label> <br />
-                                                <input
-                                                      type="number"
-                                                      className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
-                                                      value={price}
-                                                      onChange={(e) => setPrice(e.target.value)} />
-                                          </div>
+                              <div className="grid grid-cols-1 gap-4">
+                                    <div className="mb-4">
+                                          <label htmlFor="name" className="text-lg font-semibold">
+                                                Name
+                                          </label>
+                                          <input
+                                                type="text"
+                                                className="p-2 w-full border rounded-md bg-gray-200"
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)} />
                                     </div>
-                                    <div className="flex flex-wrap">
-                                          <div className="one">
-                                                <label htmlFor="name block">Quantity</label> <br />
-                                                <input
-                                                      type="number"
-                                                      className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
-                                                      value={quantity}
-                                                      onChange={(e) => setQuantity(e.target.value)} />
-                                          </div>
-                                          <div className="two ml-10 ">
-                                                <label htmlFor="name block">Brand</label> <br />
-                                                <input
-                                                      type="text"
-                                                      className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
-                                                      value={brand}
-                                                      onChange={(e) => setBrand(e.target.value)} />
-                                          </div>
+                                    <div className="mb-4">
+                                          <label htmlFor="price" className="text-lg font-semibold">
+                                                Price
+                                          </label>
+                                          <input
+                                                type="number"
+                                                className="p-2 w-full border rounded-md bg-gray-200"
+                                                value={price}
+                                                onChange={(e) => setPrice(e.target.value)} />
                                     </div>
-                                    <label htmlFor="" className="my-5">
-                                          Description
-                                    </label>
-                                    <textarea
-                                          type="text"
-                                          className="p-2 mb-3 bg-[#101011] border rounded-lg w-[95%] text-white"
-                                          value={description}
-                                          onChange={(e) => setDescription(e.target.value)}></textarea>
-
-                                    <div className="flex justify-between">
-                                          <div>
-                                                <label htmlFor="name block">Count In Stock</label> <br />
+                                    <div className="mb-4">
+                                          <label htmlFor="quantity" className="text-lg font-semibold">
+                                                Quantity
+                                          </label>
+                                          <input
+                                                type="number"
+                                                className="p-2 w-full border rounded-md bg-gray-200"
+                                                value={quantity}
+                                                onChange={(e) => setQuantity(e.target.value)} />
+                                    </div>
+                                    <div className="mb-4">
+                                          <label htmlFor="brand" className="text-lg font-semibold">
+                                                Brand
+                                          </label>
+                                          <input
+                                                type="text"
+                                                className="p-2 w-full border rounded-md bg-gray-200"
+                                                value={brand}
+                                                onChange={(e) => setBrand(e.target.value)} />
+                                    </div>
+                                    <div className="mb-4">
+                                          <label htmlFor="description" className="text-lg font-semibold">
+                                                Description
+                                          </label>
+                                          <textarea
+                                                type="text"
+                                                className="p-2 w-full border rounded-md bg-gray-200"
+                                                value={description}
+                                                onChange={(e) => setDescription(e.target.value)} />
+                                    </div>
+                                    <div className="flex justify-between mb-4">
+                                          <div className="w-full mr-4">
+                                                <label htmlFor="stock" className="text-lg font-semibold">
+                                                      Count In Stock
+                                                </label>
                                                 <input
                                                       type="text"
-                                                      className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                                                      className="p-2 w-full border rounded-md bg-gray-200"
                                                       value={stock}
                                                       onChange={(e) => setStock(e.target.value)} />
                                           </div>
-                                          <div>
-                                                <label htmlFor="">Category</label> <br />
+                                          <div className="w-full">
+                                                <label htmlFor="category" className="text-lg font-semibold">
+                                                      Category
+                                                </label>
                                                 <select
-                                                      placeholder="Choose Category"
-                                                      className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
+                                                      className="p-2 w-full border rounded-md bg-gray-200"
                                                       onChange={(e) => setCategory(e.target.value)}>
+                                                      <option value="" disabled selected>
+                                                            Choose Category
+                                                      </option>
                                                       {categories?.map((c) => (
                                                             <option key={c._id} value={c._id}>
                                                                   {c.name}
@@ -156,12 +189,12 @@ const ProductList = () => {
                                                 </select>
                                           </div>
                                     </div>
-                                    <button
-                                          onClick={handleSubmit}
-                                          className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-pink-600">
-                                          Submit
-                                    </button>
                               </div>
+                              <button
+                                    onClick={handleSubmit}
+                                    className="py-2 px-6 bg-green-500 text-white rounded-md font-semibold hover:bg-green-600">
+                                    Create
+                              </button>
                         </div>
                   </div>
             </div>
