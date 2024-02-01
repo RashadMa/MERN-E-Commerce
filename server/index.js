@@ -23,9 +23,6 @@ const app = express()
 //             credentials: true,
 //       }
 // ))
-app.use("/", (req, res) => {
-      res.send("running")
-})
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
