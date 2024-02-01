@@ -6,7 +6,6 @@ import { useLoginMutation } from "../../redux/api/usersApiSlice";
 import { setCredentials } from "../../redux/features/auth/authSlice";
 import "./Navigation.scss";
 
-
 const Login = () => {
       const [email, setEmail] = useState("");
       const [password, setPassword] = useState("");
