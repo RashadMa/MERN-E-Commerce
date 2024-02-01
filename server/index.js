@@ -8,6 +8,7 @@ import categoryRoutes from "./routes/categoryRoutes.js"
 import productRoutes from "./routes/productRoutes.js"
 import uploadRoutes from "./routes/uploadRoutes.js"
 import orderRoutes from "./routes/orderRoutes.js"
+import cors from "cors"
 
 dotenv.config()
 const port = 4000
@@ -30,5 +31,10 @@ app.get("/api/config/paypal", (req, res) => {
 
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname + "/uploads")));
+app.use(express.static(path.join(__dirname, "/client/dist")));
+
+app.get("*", (res) => {
+      res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 app.listen(port, () => console.log("Server running"))
