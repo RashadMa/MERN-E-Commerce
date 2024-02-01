@@ -41,31 +41,37 @@ const createUser = asyncHandler(async (req, res) => {
 })
 
 const login = asyncHandler(async (req, res) => {
-      const { email, password } = req.body
-      const existingUser = await User.findOne({ email })
+      const { email, password } = req.body;
 
       try {
+            if (!email || !password) {
+                  res.status(400).json({ message: "Email and password are required." });
+                  return;
+            }
+
+            const existingUser = await User.findOne({ email });
+
             if (existingUser) {
-                  const isPasswordValid = await bcrypt.compare(password, existingUser.password)
+                  const isPasswordValid = await bcrypt.compare(password, existingUser.password);
 
                   if (isPasswordValid) {
-                        createToken(res, existingUser._id)
+                        createToken(res, existingUser._id);
 
                         res.status(201).json({
                               _id: existingUser._id,
                               username: existingUser.username,
                               email: existingUser.email,
                               isAdmin: existingUser.isAdmin
-                        })
-                        return
+                        });
+                        return;
                   }
             }
+            res.status(401).json({ message: "Invalid email or password." });
       } catch (error) {
-            res.status(400)
-            throw new Error("Invalid user data")
+            res.status(500).json({ message: "Internal Server Error" });
       }
+});
 
-})
 
 const logout = asyncHandler(async (req, res) => {
       res.cookie("jwt", "", {

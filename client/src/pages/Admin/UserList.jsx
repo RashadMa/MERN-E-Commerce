@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { FaTrash, FaEdit, FaCheck, FaTimes } from "react-icons/fa"
 import Loader from "../../components/Loader"
-import { toast } from "react-toastify"
 import { useGetUsersQuery, useDeleteUserMutation, useUpdateUserMutation } from "../../redux/api/usersApiSlice"
 import Message from "../../components/Message"
 import AdminMenu from "./AdminMenu";
+import Swal from "sweetalert2"
 
 const UserList = () => {
       const { data: users, refetch, isLoading, error } = useGetUsersQuery()
@@ -24,7 +24,13 @@ const UserList = () => {
                         await deleteUser(id);
                         refetch();
                   } catch (err) {
-                        toast.error(err?.data?.message || err.error);
+                        Swal.fire({
+                              position: "top-end",
+                              icon: "error",
+                              title: err?.data?.message || err.error,
+                              showConfirmButton: false,
+                              timer: 1000
+                        });
                   }
             }
       };
@@ -45,7 +51,13 @@ const UserList = () => {
                   setEditableUserId(null);
                   refetch();
             } catch (err) {
-                  toast.error(err?.data?.message || err.error);
+                  Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: err?.data?.message || err.error,
+                        showConfirmButton: false,
+                        timer: 1000
+                  });
             }
       };
 
