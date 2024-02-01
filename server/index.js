@@ -15,14 +15,17 @@ const port = 4000
 connectDB()
 const app = express()
 
-app.use(cors(
-      {
-            origin: ["https://mern-e-commerce-swart.vercel.app/"],
-            methods: ["POST", "GET", "PUT", "DELETE"],
-            allowedHeaders: ['Content-Type', 'Authorization'],
-            credentials: true,
-      }
-))
+// app.use(cors(
+//       {
+//             origin: ["https://mern-e-commerce-swart.vercel.app/"],
+//             methods: ["POST", "GET", "PUT", "DELETE"],
+//             allowedHeaders: ['Content-Type', 'Authorization'],
+//             credentials: true,
+//       }
+// ))
+app.use("/", (req, res) => {
+      res.send("running")
+})
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
