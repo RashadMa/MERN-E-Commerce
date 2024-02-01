@@ -17,7 +17,7 @@ const app = express()
 
 app.use(cors(
       {
-            origin: [],
+            origin: ["https://mern-e-commerce-swart.vercel.app/"],
             methods: ["POST", "GET", "PUT", "DELETE"],
             allowedHeaders: ['Content-Type', 'Authorization'],
             credentials: true,
