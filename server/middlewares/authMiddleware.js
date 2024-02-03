@@ -16,7 +16,9 @@ const auth = asyncHandler(async (req, res, next) => {
             }
       } else {
             res.status(401)
-            throw new Error('You are not logged in')
+            return req
+            // throw new Error('You are not logged in')
+            // throw new Error()
       }
 })
 
