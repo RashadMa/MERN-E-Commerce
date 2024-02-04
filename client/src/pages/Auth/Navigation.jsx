@@ -21,7 +21,7 @@ const Navigation = () => {
             try {
                   await logoutApiCall().unwrap();
                   dispatch(logout());
-                  navigate("/shop");
+                  navigate("/login");
             } catch (error) {
                   console.error(error);
             }
