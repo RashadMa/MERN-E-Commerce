@@ -5,7 +5,6 @@ const generateToken = (res, userId) => {
       const token = jwt.sign({ userId }, secretKey, { expiresIn: "30d", })
 
       res.cookie("jwt", token, {
-            httpOnly: true,
             secure: false,
             sameSite: "none",
             expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
