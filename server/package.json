@@ -8,10 +8,9 @@
     "node": ">=14.x"
   },
   "scripts": {
-    "server": "nodemon server/index.js",
-    "client": "npm run dev --prefix client",
-    "dev": "concurrently \"npm run client\" \"npm run server\"",
-    "start": "node server/index.js"
+    "dev": "nodemon api/index.js",
+    "start": "node api/index.js",
+    "build": "npm install && npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",
