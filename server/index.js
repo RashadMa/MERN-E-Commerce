@@ -10,7 +10,7 @@ import uploadRoutes from "./routes/uploadRoutes.js"
 import orderRoutes from "./routes/orderRoutes.js"
 
 dotenv.config()
-const port = 4000
+const port = "https://mern-e-commerce-api-2.vercel.app"
 connectDB()
 const app = express()
 
