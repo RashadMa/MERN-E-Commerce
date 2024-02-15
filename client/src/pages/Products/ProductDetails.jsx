@@ -21,6 +21,10 @@ const ProductDetails = () => {
       const { userInfo } = useSelector((state) => state.auth);
       const [createReview, { isLoading: loadingProductReview }] = useCreateReviewMutation();
 
+
+      console.log(error);
+
+
       const submitHandler = async (e) => {
             e.preventDefault();
             try {
@@ -76,7 +80,8 @@ const ProductDetails = () => {
                               </Message>
                         ) : (
                               <>
-                                    <div className="flex flex-wrap relative items-between mt-[2rem] justify-around">
+
+                                    {/* <div className="flex flex-wrap relative items-between mt-[2rem] justify-around">
                                           <div className="relative">
                                                 <img
                                                       src={product.image}
@@ -149,7 +154,7 @@ const ProductDetails = () => {
                                                       setComment={setComment}
                                                       product={product} />
                                           </div>
-                                    </div>
+                                    </div> */}
                               </>
                         )}
             </>

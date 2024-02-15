@@ -19,6 +19,9 @@ const SmallProduct = ({ product }) => {
             //       timer: 1000
             // });
       };
+      console.log('====================================');
+      console.log(product.name);
+      console.log('====================================');
 
       return (
             <div className="w-[20rem] p-3">
